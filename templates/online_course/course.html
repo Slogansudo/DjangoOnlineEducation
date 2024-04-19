@@ -8,7 +8,7 @@
             <div class="d-flex flex-column justify-content-center" style="min-height: 300px">
                 <h3 class="display-4 text-white text-uppercase">Courses</h3>
                 <div class="d-inline-flex text-white">
-                    <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{% url 'index' %}">Home</a></p>
                     <i class="fa fa-angle-double-right pt-1 px-3"></i>
                     <p class="m-0 text-uppercase">Courses</p>
                 </div>
@@ -52,21 +52,30 @@
                 <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Courses</h5>
                 <h1>Our Popular Courses</h1>
             </div>
+            <div>
+                <form>
+                    {% csrf_token %}
+                    <input type="text" placeholder="search" name="search" value="{{ search }}">
+                    <button type="submit">Search</button>
+                    <br><br>
+                </form>
+                <a href="{% url 'add-course' %}">Add new course</a><br><br>
+            </div>
             <div class="row">
-                {%  for cours in courses %}
+                {%  for course in courses %}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="rounded overflow-hidden mb-2">
-                        <img class="img-fluid" src="{{ cours.image.url }}" alt="">
+                        <img class="img-fluid" src="{{ course.image.url }}" alt="">
                         <div class="bg-secondary p-4">
                             <div class="d-flex justify-content-between mb-3">
-                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ cours.active_users }} Students</small>
+                                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ course.active_users }} Students</small>
                                 <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>01h 30m</small>
                             </div>
-                            <a class="h5" href="">{{ cours.title }}</a>
+                            <a class="h5" href="{% url 'course-detail' course.id %}">{{ course.title }}</a>
                             <div class="border-top mt-4 pt-4">
                                 <div class="d-flex justify-content-between">
-                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ cours.rating }} <small>({{ course.active_users }})</small></h6>
-                                    <h5 class="m-0">{{ cours.price }} {{ cours.price_type }}</h5>
+                                    <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ course.rating }} <small>({{ course.active_users }})</small></h6>
+                                    <h5 class="m-0">{{ course.price }} {{ course.price_type }}</h5>
                                 </div>
                             </div>
                         </div>

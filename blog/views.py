@@ -13,4 +13,9 @@ class BlogListView(View):
 class BlogDetailView(View):
     def get(self, request):
         blogs = Blog.objects.all()
-        return render(request, 'online_course/single.html', {"blogs": blogs})
+        a = 0
+        for blog in blogs:
+            data = blog
+            for comment in data.comments.all():
+                a += 1
+        return render(request, 'online_course/single.html', {"blogs": blogs, 'a': a})

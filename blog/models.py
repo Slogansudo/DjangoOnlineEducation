@@ -13,7 +13,7 @@ class Comment(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=50)
     post = models.TextField()
-    image = models.ImageField(upload_to='media/blog/blog')
+    image = models.ImageField(upload_to='blog/blog/')
     author = models.ForeignKey(Mentor, on_delete=models.CASCADE)
     comments = models.ManyToManyField(Comment, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)

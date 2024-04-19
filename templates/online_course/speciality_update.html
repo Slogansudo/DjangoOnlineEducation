@@ -1,0 +1,12 @@
+{% extends 'online_course/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="title"></label>
+            <input id="title" placeholder="Title" name="title" value="{{ speciality.title }}"><br><br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+{% endblock %}

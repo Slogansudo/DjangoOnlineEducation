@@ -1,0 +1,13 @@
+{% extends 'online_course/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ speciality.image.url }}" class="card-img-top" alt="">
+    <div class="card-body">
+        <h2>{{ speciality.title }}</h2>
+        </div>
+
+    <button type="submit" class="btn btn-outline-secondary btn-sm"><a href="{% url 'speciality-delete' speciality.id %}">Delete</a></button>
+    <button type="submit" class="btn btn-secondary btn-sm"><a href="{% url 'speciality-update' speciality.id %}">Update</a></button>
+    </div>
+{% endblock %}

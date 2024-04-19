@@ -41,18 +41,19 @@
                             <h5>{{ mentor.full_name }}</h5>
                             <p class="m-0">course:
                                     {% for data in mentor.courses.all %}
-                                        {{ data.title }}<br>
-                                         speciality:
-                                        {% for speciality in data.speciality.all %}
-                                            {{ speciality.title }}
-                                    position: {{ mentor.position }}
-                                    </p>
-                                        {% endfor %}
-                                        {% endfor %}
+                                        {{ data.title }}<br></p>
+                                    {% endfor %}
+                            <p class="m-0">speciality:
+                                    {% for data in mentor.courses.all %}
+                                        {% for spes in data.speciality.all %}
+                                            {{ spes.title }}<br>
+                                            {% endfor %}
+                                        {% endfor %}</p>
+                            <p class="m-0">position:{{ mentor.position.name }}</p>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+            {% endfor %}
             </div>
         </div>
     </div>

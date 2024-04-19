@@ -1,0 +1,14 @@
+{% extends 'online_course/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ course.image.url }}" class="card-img-top" alt="">
+    <div class="card-body">
+        <h2>{{ course.title }}</h2>
+        <p class="card text">{{ course.description }}</p>
+        </div>
+
+    <button type="submit" class="btn btn-outline-secondary btn-sm"><a href="{% url 'course-delete' course.id %}">Delete</a></button>
+    <button type="submit" class="btn btn-secondary btn-sm"><a href="{% url 'course-update' course.id %}">Update</a></button>
+    </div>
+{% endblock %}
