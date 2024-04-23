@@ -1,10 +1,10 @@
 from django.db import models
-
+from .helps import SaveMediaFile
 
 # Create your models here.
 class Speciality(models.Model):
     title = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='media/cours/specialities/')
+    image = models.ImageField(upload_to=SaveMediaFile.speciality_image_path)
     last_updated = models.DateTimeField(auto_now=True)
     create_date = models.DateTimeField(auto_now_add=True)
 
@@ -17,12 +17,13 @@ class Course(models.Model):
         s = "USD", "$"
         sum = "UZS", "so'm"
     title = models.CharField(max_length=50)
+    slug = models.SlugField(verbose_name='Slug', max_length=255)
     description = models.TextField()
     active_users = models.PositiveIntegerField(default=0)
     price = models.FloatField()
     price_type = models.CharField(max_length=10, choices=Price_types.choices, default=Price_types.sum)
     rating = models.FloatField(default=0)
-    image = models.ImageField(upload_to='media/cours/courses/', blank=True)
+    image = models.ImageField(upload_to=SaveMediaFile.course_image_path, blank=True)
     speciality = models.ManyToManyField(Speciality)
     last_updated = models.DateTimeField(auto_now=True)
     create_date = models.DateTimeField(auto_now_add=True)
@@ -43,7 +44,7 @@ class Position(models.Model):
 class Mentor(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='media/cours/teacher')
+    image = models.ImageField(upload_to=SaveMediaFile.teacher_image_path, blank=True)
     age = models.IntegerField()
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Course)

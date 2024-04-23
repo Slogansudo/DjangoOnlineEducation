@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Course, Mentor, Speciality
 from django.views import View
+
 # Create your views here.
 
 
@@ -20,8 +21,8 @@ class MentorView(View):
 
 
 class CourseDetailView(View):
-    def get(self, request, id):
-        course = Course.objects.get(id=id)
+    def get(self, request, slug):
+        course = Course.objects.get(slug=slug)
         return render(request, 'online_course/course_detail.html', {'course': course})
 
 
